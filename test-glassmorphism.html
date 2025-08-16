@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Test - Japan Innovation Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating background elements */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 20%;
+            animation-delay: -2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -4s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            right: 30%;
+            animation-delay: -1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        /* Glass morphism styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero .highlight {
+            color: #ea580c;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ea580c, #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.6);
+        }
+        
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #374151;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            padding: 30px;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a202c;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .features li {
+            padding: 8px 0;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .event-timeline {
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .event-timeline h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a202c;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ea580c;
+        }
+        
+        .timeline-item h4 {
+            color: #1a202c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-item p {
+            color: #4a5568;
+            margin: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 30px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="glass hero">
+            <h1>Japan Innovation <span class="highlight">Showcase</span></h1>
+            <p>日本発グローバル × クリエイター × 小規模企業<br>
+            新たな価値創造とイノベーションを生み出す国際交流の場</p>
+            
+            <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 15px; margin-bottom: 30px;">
+                <p style="margin: 0; color: #1a202c; font-weight: 600;">
+                    📅 2024年9月15日（日） ⏰ 18:00-20:30<br>
+                    📍 はるみらい（晴海） 👥 定員30名
+                </p>
+            </div>
+            
+            <div class="buttons">
+                <a href="#" class="btn btn-primary">🎫 今すぐ参加申込</a>
+                <a href="#" class="btn btn-glass">📋 詳細を見る</a>
+            </div>
+        </div>
+
+        <!-- Community Cards -->
+        <div class="cards">
+            <div class="glass card">
+                <h3>🌍 Global Friends Hub</h3>
+                <p>参加障壁を下げた気軽な国際交流の入口</p>
+                <ul class="features">
+                    <li>参加費: 500円〜</li>
+                    <li>月2〜4回開催</li>
+                    <li>Language & Culture Exchange</li>
+                    <li>季節イベント・文化体験</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">参加する</a>
+            </div>
+
+            <div class="glass card">
+                <h3>🚀 Open Coral Network</h3>
+                <p>プロジェクト創出と深い価値創造の場</p>
+                <ul class="features">
+                    <li>参加費: 1,000〜3,000円</li>
+                    <li>月1〜2回開催</li>
+                    <li>Innovation Pitch Night</li>
+                    <li>AI-Driven Workshop</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%; text-align: center; display: block;">参加する</a>
+            </div>
+        </div>
+
+        <!-- Event Timeline -->
+        <div class="glass event-timeline">
+            <h2>📅 イベントプログラム</h2>
+            <div class="timeline-item">
+                <h4>18:00-18:30 ウェルカムブース巡り</h4>
+                <p>日本クリエイター・企業ブース展示、試食・試用・体験コーナー</p>
+            </div>
+            <div class="timeline-item">
+                <h4>18:30-19:15 イノベーションピッチセッション</h4>
+                <p>選抜ピッチ（4組）、リアルタイム投票、賞の発表</p>
+            </div>
+            <div class="timeline-item">
+                <h4>19:15-20:00 マッチングラウンドテーブル</h4>
+                <p>専門テーブル：グローバルマーケティング、海外EC、コラボレーション</p>
+            </div>
+            <div class="timeline-item">
+                <h4>20:00-20:30 コミットメント&ネクストステップ</h4>
+                <p>マッチング結果発表、次回イベント予告、コミュニティ参加案内</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="glass-dark footer">
+            <h3 style="margin-bottom: 15px;">Japan Innovation Showcase</h3>
+            <p>日本と世界を繋ぐ「文化×技術×人」の交流プラットフォーム</p>
+            <div style="margin-top: 20px;">
+                <span style="font-size: 1.5rem;">🤝 📷 📘 💬</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

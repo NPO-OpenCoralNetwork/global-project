@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Innovation Showcase | 国際交流コミュニティ - Full Glassmorphism</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating background elements */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            right: 15%;
+            animation-delay: -2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -4s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            right: 25%;
+            animation-delay: -1s;
+        }
+        
+        .shape:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            bottom: 40%;
+            right: 10%;
+            animation-delay: -3s;
+        }
+        
+        .shape:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            top: 70%;
+            left: 15%;
+            animation-delay: -5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            33% { transform: translateY(-30px) rotate(120deg); opacity: 0.7; }
+            66% { transform: translateY(-15px) rotate(240deg); opacity: 0.5; }
+        }
+        
+        /* Glass morphism styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Navigation */
+        .nav {
+            padding: 15px 0;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1E40AF;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .nav-actions select {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 6px 12px;
+            color: #374151;
+            outline: none;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #EA580C, #DC2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(234, 88, 12, 0.6);
+        }
+        
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #374151;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .btn-green {
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
+        }
+        
+        .btn-green:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            padding: 60px 40px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #1a202c;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero .highlight {
+            color: #EA580C;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .event-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .event-detail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a202c;
+            font-weight: 600;
+        }
+        
+        .event-detail span:first-child {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1a202c;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            padding: 40px 30px;
+            height: 100%;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .card-icon {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1a202c;
+        }
+        
+        .card .subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .card-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        
+        .detail-row:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-green {
+            background: rgba(5, 150, 105, 0.2);
+            color: #047857;
+        }
+        
+        .badge-orange {
+            background: rgba(234, 88, 12, 0.2);
+            color: #ea580c;
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .features li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .features li:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            padding: 50px 40px;
+        }
+        
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ea580c;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item h4 {
+            color: #1a202c;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-item .subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .timeline-item p {
+            color: #4a5568;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            padding: 30px;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+            color: #1a202c;
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .testimonial-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            color: #4a5568;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 60px 0;
+        }
+        
+        .footer-content {
+            padding: 50px 40px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer h3 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .event-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="container">
+            <div class="nav">
+                <div class="nav-content">
+                    <div class="logo">Japan Innovation Showcase</div>
+                    <ul class="nav-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">イベント</a></li>
+                        <li><a href="#community">コミュニティ</a></li>
+                        <li><a href="#blog">ブログ</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <select>
+                            <option value="ja">日本語</option>
+                            <option value="en">English</option>
+                            <option value="zh">中文</option>
+                            <option value="ko">한국어</option>
+                        </select>
+                        <a href="#register" class="btn btn-primary">参加申込</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="glass hero-content animate-on-scroll">
+                <div style="background: rgba(234, 88, 12, 0.15); display: inline-flex; align-items: center; padding: 8px 20px; border-radius: 25px; margin-bottom: 30px; color: #ea580c; font-weight: 600;">
+                    🚀 9月15日開催決定！
+                </div>
+                <h1>Japan Innovation <span class="highlight">Showcase</span></h1>
+                <p>日本発グローバル × クリエイター × 小規模企業<br>
+                新たな価値創造とイノベーションを生み出す国際交流の場</p>
+                
+                <div class="event-info">
+                    <div class="event-detail">
+                        <span>📅</span>
+                        <span>2024年9月15日（日）</span>
+                    </div>
+                    <div class="event-detail">
+                        <span>⏰</span>
+                        <span>18:00-20:30</span>
+                    </div>
+                    <div class="event-detail">
+                        <span>📍</span>
+                        <span>はるみらい（晴海）</span>
+                    </div>
+                    <div class="event-detail">
+                        <span>👥</span>
+                        <span>定員30名</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#register" class="btn btn-primary">今すぐ参加申込</a>
+                    <a href="#details" class="btn btn-glass">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="section" id="community">
+        <div class="container">
+            <div class="glass section-title animate-on-scroll">
+                <h2>二層構造コミュニティ</h2>
+                <p>参加者のレベルと目的に応じた最適な交流体験を提供します</p>
+            </div>
+            
+            <div class="cards">
+                <div class="glass card animate-on-scroll">
+                    <div class="card-header">
+                        <div class="card-icon">🌍</div>
+                        <div>
+                            <h3>Global Friends Hub</h3>
+                            <div class="subtitle">エントリー層・初心者歓迎</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span>参加費</span>
+                            <span class="badge badge-green">500円〜</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>開催頻度</span>
+                            <span>月2〜4回</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="features">
+                        <li>Language & Culture Exchange</li>
+                        <li>季節イベント（花見、紅葉散策）</li>
+                        <li>日本文化体験（書道、着物、茶道）</li>
+                        <li>Food Culture Tour</li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-green" style="width: 100%;">Global Friends Hub に参加</a>
+                </div>
+                
+                <div class="glass card animate-on-scroll">
+                    <div class="card-header">
+                        <div class="card-icon">🚀</div>
+                        <div>
+                            <h3>Open Coral Network</h3>
+                            <div class="subtitle">コア層・プロジェクト志向</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-details">
+                        <div class="detail-row">
+                            <span>参加費</span>
+                            <span class="badge badge-orange">1,000〜3,000円</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>開催頻度</span>
+                            <span>月1〜2回</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="features">
+                        <li>Culture & Innovation Pitch Night</li>
+                        <li>AI-Driven Workshop</li>
+                        <li>Creator-Investor Matching</li>
+                        <li>Global Project Incubation</li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Open Coral Network に参加</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Program Section -->
+    <section class="section" id="events">
+        <div class="container">
+            <div class="glass section-title animate-on-scroll">
+                <h2>イベントプログラム</h2>
+                <p>9月15日 Japan Innovation Showcase</p>
+            </div>
+            
+            <div class="glass timeline animate-on-scroll">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h4>18:00-18:30</h4>
+                            <div class="subtitle">ウェルカムブース巡り</div>
+                        </div>
+                        <span class="badge" style="background: #1E40AF; color: white;">30分</span>
+                    </div>
+                    <p>日本クリエイター・企業ブース展示（8-10ブース）、試食・試用・体験コーナー</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h4>18:30-19:15</h4>
+                            <div class="subtitle">イノベーションピッチセッション</div>
+                        </div>
+                        <span class="badge" style="background: #EA580C; color: white;">45分</span>
+                    </div>
+                    <p>選抜ピッチ（4組 × 5分ピッチ + 2分Q&A）、リアルタイム投票、賞の発表</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h4>19:15-20:00</h4>
+                            <div class="subtitle">マッチングラウンドテーブル</div>
+                        </div>
+                        <span class="badge" style="background: #059669; color: white;">45分</span>
+                    </div>
+                    <p>専門テーブル：グローバルマーケティング、海外EC、コラボレーション、サブスク事業</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h4>20:00-20:30</h4>
+                            <div class="subtitle">コミットメント&ネクストステップ</div>
+                        </div>
+                        <span class="badge" style="background: #6B7280; color: white;">30分</span>
+                    </div>
+                    <p>マッチング結果発表、次回イベント予告、コミュニティ参加案内</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid-2">
+                <div class="glass animate-on-scroll" style="padding: 40px;">
+                    <h2 style="color: #1a202c; margin-bottom: 30px;">会場案内</h2>
+                    <h3 style="color: #1a202c; margin-bottom: 15px;">はるみらい</h3>
+                    <p style="color: #4a5568; margin-bottom: 30px;">
+                        東京都中央区晴海にある地域活動支援施設。地域活動スタジオを利用し、
+                        50名程度の参加者が快適に交流できる環境を提供します。
+                    </p>
+                    
+                    <div class="grid-4" style="margin-bottom: 30px;">
+                        <div class="glass" style="padding: 20px; text-align: center;">
+                            <div style="color: #6b7280; font-size: 0.9rem;">定員</div>
+                            <div style="color: #1a202c; font-weight: bold; font-size: 1.1rem;">50名程度</div>
+                        </div>
+                        <div class="glass" style="padding: 20px; text-align: center;">
+                            <div style="color: #6b7280; font-size: 0.9rem;">広さ</div>
+                            <div style="color: #1a202c; font-weight: bold; font-size: 1.1rem;">166.3㎡</div>
+                        </div>
+                        <div class="glass" style="padding: 20px; text-align: center;">
+                            <div style="color: #6b7280; font-size: 0.9rem;">利用料</div>
+                            <div style="color: #059669; font-weight: bold; font-size: 1.1rem;">無料</div>
+                        </div>
+                        <div class="glass" style="padding: 20px; text-align: center;">
+                            <div style="color: #6b7280; font-size: 0.9rem;">設備</div>
+                            <div style="color: #1a202c; font-weight: bold; font-size: 1.1rem;">仮設ステージ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass" style="padding: 20px;">
+                        <h4 style="color: #1a202c; margin-bottom: 15px;">アクセス</h4>
+                        <ul style="list-style: none; color: #4a5568;">
+                            <li style="margin-bottom: 8px;">• 都営大江戸線 勝どき駅 徒歩10分</li>
+                            <li style="margin-bottom: 8px;">• 都営バス 晴海1丁目停留所 徒歩3分</li>
+                            <li>• 住所：東京都中央区晴海1-8-8</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass animate-on-scroll" style="padding: 40px; display: flex; align-items: center; justify-content: center; min-height: 400px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">🗺️</div>
+                        <div style="color: #1a202c; font-weight: bold; font-size: 1.2rem; margin-bottom: 8px;">Google Maps</div>
+                        <div style="color: #6b7280;">はるみらい周辺地図</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <div class="glass section-title animate-on-scroll">
+                <h2>参加者の声</h2>
+                <p>国際交流を通じて新たな価値を創造する仲間たち</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="glass testimonial animate-on-scroll">
+                    <div class="testimonial-header">
+                        <div class="avatar">A</div>
+                        <div>
+                            <div class="testimonial-name">Alex Johnson</div>
+                            <div class="testimonial-role">スタートアップ創業者・アメリカ</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "日本の技術と文化を理解する貴重な機会でした。新しいビジネスパートナーとも出会えて、
+                        グローバル展開のヒントを得ることができました。"
+                    </div>
+                </div>
+                
+                <div class="glass testimonial animate-on-scroll">
+                    <div class="testimonial-header">
+                        <div class="avatar">田</div>
+                        <div>
+                            <div class="testimonial-name">田中 美咲</div>
+                            <div class="testimonial-role">プロダクトデザイナー・日本</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "多様な文化背景を持つクリエイターとの交流で、デザインの視野が大きく広がりました。
+                        次回も必ず参加したいです！"
+                    </div>
+                </div>
+                
+                <div class="glass testimonial animate-on-scroll">
+                    <div class="testimonial-header">
+                        <div class="avatar">李</div>
+                        <div>
+                            <div class="testimonial-name">李 志强</div>
+                            <div class="testimonial-role">AI研究者・中国</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        "技術的な議論だけでなく、文化的な理解も深まる素晴らしいイベントでした。
+                        国際的なプロジェクトのアイデアが生まれました。"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="glass animate-on-scroll" style="text-align: center; padding: 80px 40px;">
+                <h2 style="color: #1a202c; font-size: 2.5rem; margin-bottom: 20px;">
+                    新たな価値創造の旅を始めませんか？
+                </h2>
+                <p style="color: #4a5568; font-size: 1.3rem; margin-bottom: 40px;">
+                    Japan Innovation Showcaseで、世界とつながる第一歩を踏み出しましょう
+                </p>
+                
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+                    <a href="#register" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                        🎫 今すぐ参加申込
+                    </a>
+                    <a href="#download" class="btn btn-glass" style="font-size: 1.1rem; padding: 15px 30px;">
+                        📋 詳細資料をダウンロード
+                    </a>
+                </div>
+                
+                <div class="social-links" style="justify-content: center;">
+                    <a href="#">🤝</a>
+                    <a href="#">📷</a>
+                    <a href="#">📘</a>
+                    <a href="#">💬</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="glass-dark footer-content">
+                <div class="footer-grid">
+                    <div>
+                        <h3>Japan Innovation Showcase</h3>
+                        <p>日本と世界を繋ぐ「文化×技術×人」の交流プラットフォーム</p>
+                        <div class="social-links">
+                            <a href="#">🤝</a>
+                            <a href="#">📷</a>
+                            <a href="#">📘</a>
+                            <a href="#">💬</a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>コミュニティ</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Global Friends Hub</a></li>
+                            <li><a href="#">Open Coral Network</a></li>
+                            <li><a href="#">メンバー紹介</a></li>
+                            <li><a href="#">成功事例</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3>サポート</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">よくある質問</a></li>
+                            <li><a href="#">お問い合わせ</a></li>
+                            <li><a href="#">プライバシーポリシー</a></li>
+                            <li><a href="#">利用規約</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>© 2024 Japan Innovation Showcase. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe all animation elements
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            console.log('Full Glassmorphism UI Loaded');
+        });
+    </script>
+</body>
+</html>

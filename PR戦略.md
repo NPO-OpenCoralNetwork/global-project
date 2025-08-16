@@ -2,6 +2,10 @@
 
 ## 1. 統合マーケティング戦略概要
 
+### 🌐 **Meetupグループ管理**
+- **Global Friends Hub（第1層）**: [https://www.meetup.com/ja-JP/global-friends-hub/](https://www.meetup.com/ja-JP/global-friends-hub/)
+- **Open Coral Network（第2層）**: [https://www.meetup.com/ja-JP/open-coral-network/](https://www.meetup.com/ja-JP/open-coral-network/)
+
 ```mermaid
 mindmap
   root((Japan Innovation Showcase))
@@ -40,6 +44,8 @@ mindmap
 | **六本木・麻布** | 六本木ヒルズライブラリー<br/>外国人向け飲食店<br/>各国大使館周辺 | 会員配布<br/>レジ前設置<br/>掲示板 | 駐在員・研究者 | 9月1-7日 |
 
 #### 教育機関（効果的アプローチ）
+
+**📋 詳細営業戦略**: [大学・センター営業戦略](./大学・センター営業戦略.md) 参照
 
 ```mermaid
 gantt

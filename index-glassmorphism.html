@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Innovation Showcase | 国際交流コミュニティ - Glassmorphism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#1E40AF',
+                        'primary-orange': '#EA580C',
+                        'primary-green': '#059669',
+                        'secondary-gray': '#6B7280',
+                        'secondary-light': '#F3F4F6'
+                    },
+                    fontFamily: {
+                        'ja': ['Noto Sans JP', 'sans-serif'],
+                        'en': ['Inter', 'sans-serif']
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .glass-button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, 
+                rgba(30, 64, 175, 0.8) 0%, 
+                rgba(234, 88, 12, 0.8) 50%, 
+                rgba(5, 150, 105, 0.8) 100%);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .morphism-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-glass {
+            background: linear-gradient(135deg, 
+                rgba(30, 64, 175, 0.7) 0%, 
+                rgba(234, 88, 12, 0.7) 100%);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="font-ja bg-gradient-to-br from-blue-400 via-purple-500 to-orange-400 min-h-screen">
+
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-20">
+        <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full floating-element"></div>
+        <div class="absolute top-32 right-20 w-16 h-16 bg-yellow-300 rounded-full floating-element" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-pink-300 rounded-full floating-element" style="animation-delay: -4s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-24 h-24 bg-green-300 rounded-full floating-element" style="animation-delay: -1s;"></div>
+        <div class="absolute bottom-40 right-10 w-14 h-14 bg-blue-300 rounded-full floating-element" style="animation-delay: -3s;"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="morphism-nav sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="text-xl font-bold text-primary-blue">
+                        Japan Innovation Showcase
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="text-secondary-gray hover:text-primary-blue px-3 py-2 rounded-md text-sm font-medium glass-button">About</a>
+                        <a href="#" class="text-secondary-gray hover:text-primary-blue px-3 py-2 rounded-md text-sm font-medium glass-button">イベント</a>
+                        <a href="#" class="text-secondary-gray hover:text-primary-blue px-3 py-2 rounded-md text-sm font-medium glass-button">コミュニティ</a>
+                        <a href="#" class="text-secondary-gray hover:text-primary-blue px-3 py-2 rounded-md text-sm font-medium glass-button">ブログ</a>
+                        <a href="#" class="text-secondary-gray hover:text-primary-blue px-3 py-2 rounded-md text-sm font-medium glass-button">お問い合わせ</a>
+                    </div>
+                </div>
+                
+                <!-- Language & CTA -->
+                <div class="flex items-center space-x-4">
+                    <select class="text-sm text-gray-700 glass-button rounded px-3 py-2 outline-none">
+                        <option value="ja">日本語</option>
+                        <option value="en">English</option>
+                        <option value="zh">中文</option>
+                        <option value="ko">한국어</option>
+                    </select>
+                    <button class="bg-primary-orange text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition glass-button">
+                        参加申込
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-secondary-gray hover:text-primary-blue p-2 glass-button rounded">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 bg-gradient-to-br from-blue-400 via-purple-500 to-orange-400 bg-cover bg-center" style="background-image: linear-gradient(rgba(30, 64, 175, 0.7), rgba(234, 88, 12, 0.7)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2084&q=80'); background-attachment: fixed;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="glass-card rounded-3xl p-8 md:p-12">
+                    <div class="inline-flex items-center bg-primary-orange bg-opacity-20 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6 glass-button">
+                        🚀 9月15日開催決定！
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-800">
+                        Japan Innovation<br/>
+                        <span class="text-primary-orange">Showcase</span>
+                    </h1>
+                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                        日本発グローバル × クリエイター × 小規模企業<br/>
+                        新たな価値創造とイノベーションを生み出す国際交流の場
+                    </p>
+                    
+                    <!-- Event Details -->
+                    <div class="glass rounded-2xl p-6 mb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="flex items-center text-gray-700">
+                                <span class="text-primary-orange mr-2">📅</span>
+                                <span>2024年9月15日（日）</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <span class="text-primary-orange mr-2">⏰</span>
+                                <span>18:00-20:30</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <span class="text-primary-orange mr-2">📍</span>
+                                <span>はるみらい（晴海）</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <span class="text-primary-orange mr-2">👥</span>
+                                <span>定員30名</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary-orange text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition transform hover:scale-105 glass-button">
+                            今すぐ参加申込
+                        </button>
+                        <button class="glass-button text-gray-700 px-8 py-3 rounded-lg font-semibold hover:text-primary-blue transition">
+                            詳細を見る
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Visual -->
+                <div class="relative">
+                    <div class="glass-card rounded-3xl p-8">
+                        <div class="space-y-6">
+                            <!-- Innovation Image -->
+                            <div class="mb-6">
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Innovation Conference" class="w-full h-48 object-cover rounded-xl glass">
+                            </div>
+                            <!-- Stats -->
+                            <div class="grid grid-cols-3 gap-4 text-center">
+                                <div class="glass rounded-xl p-4">
+                                    <div class="text-2xl font-bold text-primary-orange">30+</div>
+                                    <div class="text-sm text-gray-600">参加国</div>
+                                </div>
+                                <div class="glass rounded-xl p-4">
+                                    <div class="text-2xl font-bold text-primary-orange">500+</div>
+                                    <div class="text-sm text-gray-600">コミュニティ</div>
+                                </div>
+                                <div class="glass rounded-xl p-4">
+                                    <div class="text-2xl font-bold text-primary-orange">10+</div>
+                                    <div class="text-sm text-gray-600">プロジェクト</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Features -->
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm text-gray-700 glass-button rounded-lg p-3">
+                                    <span class="text-primary-green mr-3">✓</span>
+                                    <span>イノベーションピッチセッション</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700 glass-button rounded-lg p-3">
+                                    <span class="text-primary-green mr-3">✓</span>
+                                    <span>マッチングラウンドテーブル</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700 glass-button rounded-lg p-3">
+                                    <span class="text-primary-green mr-3">✓</span>
+                                    <span>文化×技術×人の交流体験</span>
+                                </div>
+                                <div class="flex items-center text-sm text-gray-700 glass-button rounded-lg p-3">
+                                    <span class="text-primary-green mr-3">✓</span>
+                                    <span>無料ネットワーキング</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Structure -->
+    <section class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="glass-card rounded-2xl p-8 inline-block">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">二層構造コミュニティ</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl">
+                        参加者のレベルと目的に応じた最適な交流体験を提供します
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Global Friends Hub -->
+                <div class="glass-card rounded-3xl p-8 border-l-4 border-primary-green">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary-green bg-opacity-20 p-4 rounded-2xl mr-4 glass relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80" alt="Global Community" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                            <span class="text-3xl relative z-10">🌍</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Global Friends Hub</h3>
+                            <p class="text-gray-600">エントリー層・初心者歓迎</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="glass rounded-lg p-4 flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">参加費</span>
+                            <span class="bg-primary-green bg-opacity-20 text-primary-green px-3 py-1 rounded-full text-sm font-medium glass">500円〜</span>
+                        </div>
+                        <div class="glass rounded-lg p-4 flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">開催頻度</span>
+                            <span class="text-sm text-gray-600">月2〜4回</span>
+                        </div>
+                        
+                        <div class="glass rounded-lg p-4">
+                            <h4 class="font-medium text-gray-800 mb-3">主要イベント</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="glass-button rounded p-2">• Language & Culture Exchange</li>
+                                <li class="glass-button rounded p-2">• 季節イベント（花見、紅葉散策）</li>
+                                <li class="glass-button rounded p-2">• 日本文化体験（書道、着物、茶道）</li>
+                                <li class="glass-button rounded p-2">• Food Culture Tour</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full bg-primary-green text-white py-3 rounded-xl font-medium hover:bg-green-700 transition glass-button">
+                            Global Friends Hub に参加
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Open Coral Network -->
+                <div class="glass-card rounded-3xl p-8 border-l-4 border-primary-orange">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-primary-orange bg-opacity-20 p-4 rounded-2xl mr-4 glass relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Innovation Network" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                            <span class="text-3xl relative z-10">🚀</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Open Coral Network</h3>
+                            <p class="text-gray-600">コア層・プロジェクト志向</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="glass rounded-lg p-4 flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">参加費</span>
+                            <span class="bg-primary-orange bg-opacity-20 text-primary-orange px-3 py-1 rounded-full text-sm font-medium glass">1,000〜3,000円</span>
+                        </div>
+                        <div class="glass rounded-lg p-4 flex justify-between items-center">
+                            <span class="text-sm font-medium text-gray-700">開催頻度</span>
+                            <span class="text-sm text-gray-600">月1〜2回</span>
+                        </div>
+                        
+                        <div class="glass rounded-lg p-4">
+                            <h4 class="font-medium text-gray-800 mb-3">主要イベント</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="glass-button rounded p-2">• Culture & Innovation Pitch Night</li>
+                                <li class="glass-button rounded p-2">• AI-Driven Workshop</li>
+                                <li class="glass-button rounded p-2">• Creator-Investor Matching</li>
+                                <li class="glass-button rounded p-2">• Global Project Incubation</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full bg-primary-orange text-white py-3 rounded-xl font-medium hover:bg-orange-600 transition glass-button">
+                            Open Coral Network に参加
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Program -->
+    <section class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="glass-card rounded-2xl p-8 inline-block">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">イベントプログラム</h2>
+                    <p class="text-lg text-gray-600">9月15日 Japan Innovation Showcase</p>
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-3xl overflow-hidden">
+                <!-- Program Timeline -->
+                <div class="divide-y divide-white divide-opacity-20">
+                    <div class="p-6 glass">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">18:00-18:30</h3>
+                                <p class="text-gray-600">ウェルカムブース巡り</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="glass-button bg-primary-blue text-white px-3 py-1 rounded-full text-sm">30分</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-sm text-gray-600 glass-button rounded-lg p-3">
+                            日本クリエイター・企業ブース展示（8-10ブース）、試食・試用・体験コーナー
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">18:30-19:15</h3>
+                                <p class="text-gray-600">イノベーションピッチセッション</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="glass-button bg-primary-orange text-white px-3 py-1 rounded-full text-sm">45分</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-sm text-gray-600 glass-button rounded-lg p-3">
+                            選抜ピッチ（4組 × 5分ピッチ + 2分Q&A）、リアルタイム投票、賞の発表
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 glass">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">19:15-20:00</h3>
+                                <p class="text-gray-600">マッチングラウンドテーブル</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="glass-button bg-primary-green text-white px-3 py-1 rounded-full text-sm">45分</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-sm text-gray-600 glass-button rounded-lg p-3">
+                            専門テーブル：グローバルマーケティング、海外EC、コラボレーション、サブスク事業
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-800">20:00-20:30</h3>
+                                <p class="text-gray-600">コミットメント&ネクストステップ</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="glass-button bg-secondary-gray text-white px-3 py-1 rounded-full text-sm">30分</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-sm text-gray-600 glass-button rounded-lg p-3">
+                            マッチング結果発表、次回イベント予告、コミュニティ参加案内
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Information -->
+    <section class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-card rounded-3xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">会場案内</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3">はるみらい</h3>
+                            <p class="text-gray-600 mb-4">
+                                東京都中央区晴海にある地域活動支援施設。地域活動スタジオを利用し、
+                                50名程度の参加者が快適に交流できる環境を提供します。
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="glass rounded-xl p-4">
+                                <div class="text-sm text-gray-600">定員</div>
+                                <div class="text-lg font-semibold text-gray-800">50名程度</div>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <div class="text-sm text-gray-600">広さ</div>
+                                <div class="text-lg font-semibold text-gray-800">166.3㎡</div>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <div class="text-sm text-gray-600">利用料</div>
+                                <div class="text-lg font-semibold text-primary-green">無料</div>
+                            </div>
+                            <div class="glass rounded-xl p-4">
+                                <div class="text-sm text-gray-600">設備</div>
+                                <div class="text-lg font-semibold text-gray-800">仮設ステージ</div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass rounded-xl p-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">アクセス</h4>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li>• 都営大江戸線 勝どき駅 徒歩10分</li>
+                                <li>• 都営バス 晴海1丁目停留所 徒歩3分</li>
+                                <li>• 住所：東京都中央区晴海1-8-8</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <!-- Map Placeholder -->
+                    <div class="glass-card rounded-3xl h-80 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1474557157379-8aa74a6ef541?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Tokyo Cityscape" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <div class="text-6xl mb-4">🗺️</div>
+                                <div class="text-white font-semibold text-lg">Google Maps</div>
+                                <div class="text-sm text-gray-200">はるみらい周辺地図</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="glass-card rounded-2xl p-8 inline-block">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">参加者の声</h2>
+                    <p class="text-lg text-gray-600">国際交流を通じて新たな価値を創造する仲間たち</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-3xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-blue to-primary-orange rounded-full flex items-center justify-center text-white font-bold text-lg glass relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Alex Johnson" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">Alex Johnson</h4>
+                            <p class="text-sm text-gray-600">スタートアップ創業者・アメリカ</p>
+                        </div>
+                    </div>
+                    <div class="glass rounded-lg p-4">
+                        <p class="text-gray-600 text-sm">
+                            "日本の技術と文化を理解する貴重な機会でした。新しいビジネスパートナーとも出会えて、
+                            グローバル展開のヒントを得ることができました。"
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-3xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-green to-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg glass relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="田中 美咲" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">田中 美咲</h4>
+                            <p class="text-sm text-gray-600">プロダクトデザイナー・日本</p>
+                        </div>
+                    </div>
+                    <div class="glass rounded-lg p-4">
+                        <p class="text-gray-600 text-sm">
+                            "多様な文化背景を持つクリエイターとの交流で、デザインの視野が大きく広がりました。
+                            次回も必ず参加したいです！"
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-3xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-orange to-primary-green rounded-full flex items-center justify-center text-white font-bold text-lg glass relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="李 志强" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-800">李 志强</h4>
+                            <p class="text-sm text-gray-600">AI研究者・中国</p>
+                        </div>
+                    </div>
+                    <div class="glass rounded-lg p-4">
+                        <p class="text-gray-600 text-sm">
+                            "技術的な議論だけでなく、文化的な理解も深まる素晴らしいイベントでした。
+                            国際的なプロジェクトのアイデアが生まれました。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="glass-card rounded-3xl p-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    新たな価値創造の旅を始めませんか？
+                </h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Japan Innovation Showcaseで、世界とつながる第一歩を踏み出しましょう
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <button class="bg-primary-orange text-white px-8 py-3 rounded-xl font-semibold hover:bg-orange-600 transition transform hover:scale-105 glass-button">
+                        🎫 今すぐ参加申込
+                    </button>
+                    <button class="glass-button text-gray-700 px-8 py-3 rounded-xl font-semibold hover:text-primary-blue transition">
+                        📋 詳細資料をダウンロード
+                    </button>
+                </div>
+                
+                <div class="flex justify-center space-x-6 text-gray-600">
+                    <a href="#" class="glass-button rounded-full p-3 hover:text-primary-blue transition">
+                        <span class="sr-only">Meetup</span>
+                        🤝
+                    </a>
+                    <a href="#" class="glass-button rounded-full p-3 hover:text-primary-blue transition">
+                        <span class="sr-only">Instagram</span>
+                        📷
+                    </a>
+                    <a href="#" class="glass-button rounded-full p-3 hover:text-primary-blue transition">
+                        <span class="sr-only">Facebook</span>
+                        📘
+                    </a>
+                    <a href="#" class="glass-button rounded-full p-3 hover:text-primary-blue transition">
+                        <span class="sr-only">LINE</span>
+                        💬
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-dark rounded-3xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-2">
+                        <div class="text-xl font-bold text-white mb-4">
+                            Japan Innovation Showcase
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            日本と世界を繋ぐ「文化×技術×人」の交流プラットフォーム
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="glass-button rounded-full p-2 text-gray-300 hover:text-white transition">🤝</a>
+                            <a href="#" class="glass-button rounded-full p-2 text-gray-300 hover:text-white transition">📷</a>
+                            <a href="#" class="glass-button rounded-full p-2 text-gray-300 hover:text-white transition">📘</a>
+                            <a href="#" class="glass-button rounded-full p-2 text-gray-300 hover:text-white transition">💬</a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold mb-4">コミュニティ</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">Global Friends Hub</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">Open Coral Network</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">メンバー紹介</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">成功事例</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-white font-semibold mb-4">サポート</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">よくある質問</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">お問い合わせ</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">プライバシーポリシー</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition glass-button rounded px-2 py-1">利用規約</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white border-opacity-20 mt-8 pt-8 text-center">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 Japan Innovation Showcase. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add gentle hover effects to glass elements
+            const glassElements = document.querySelectorAll('.glass-button');
+            glassElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            console.log('Japan Innovation Showcase - Glassmorphism UI Loaded');
+        });
+    </script>
+</body>
+</html>
